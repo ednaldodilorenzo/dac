@@ -20,7 +20,7 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Boolean> postUsuario(@RequestBody PostUsuarioDTO dto) {
-        System.out.println("Nome: " + dto.getNome());
+        System.out.println("Nome: " + dto.nome());
         this.usuarioService.save(dto);
         return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
     }
