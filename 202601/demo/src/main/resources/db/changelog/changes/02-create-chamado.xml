@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="autor">
+        <createTable tableName="chamado">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="titulo" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prioridade" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dono_id" type="BIGINT">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="fk_chamado_dono"
+                        references="usuario(id)"/>
+            </column>
+            <column name="atendente_id" type="BIGINT">
+                <constraints
+                        foreignKeyName="fk_chamado_atendente"
+                        references="usuario(id)"/>
+            </column>
+            <column name="status" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addColumn tableName="usuario">
+            <column name="papel" type="VARCHAR(7)" defaultValue="ADMIN">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="usuario">
+            <column name="email" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

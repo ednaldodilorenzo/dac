@@ -8,5 +8,6 @@
            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
     <include file="db/changelog/changes/01-create-usuario.xml"/>
+    <include file="db/changelog/changes/02-create-chamado.xml"/>
 
 </databaseChangeLog>

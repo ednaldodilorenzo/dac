@@ -2,7 +2,7 @@ package br.edu.ifpb.sr.dac.demo.controller;
 
 import br.edu.ifpb.sr.dac.demo.dto.GetUsuariosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostUsuarioDTO;
-import br.edu.ifpb.sr.dac.demo.service.UsuarioService;
+import br.edu.ifpb.sr.dac.demo.service.usuario.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +19,14 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping
-    public ResponseEntity<Boolean> postUsuario(@RequestBody PostUsuarioDTO dto) {
-        this.usuarioService.save(dto);
+    @PostMapping("/adminstrador")
+    public ResponseEntity<Boolean> postUsuarioAdm(@RequestBody PostUsuarioDTO dto) {
+        this.usuarioService.saveAdm(dto);
         return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
     }
 
-    @GetMapping
-    public ResponseEntity<List<GetUsuariosRespDTO>> getAllUsuarios() {
-        return ResponseEntity.ok(this.usuarioService.listAll());
+    @GetMapping("/administador")
+    public ResponseEntity<List<GetUsuariosRespDTO>> getAllUsuariosAdm() {
+        return ResponseEntity.ok(this.usuarioService.listAllAdm());
     }
 }
