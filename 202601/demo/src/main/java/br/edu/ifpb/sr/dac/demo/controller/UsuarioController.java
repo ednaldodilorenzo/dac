@@ -19,7 +19,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/adminstrador")
+    @PostMapping("/administrador")
     public ResponseEntity<Boolean> postUsuarioAdm(@RequestBody PostUsuarioDTO dto) {
         this.usuarioService.saveAdm(dto);
         return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
