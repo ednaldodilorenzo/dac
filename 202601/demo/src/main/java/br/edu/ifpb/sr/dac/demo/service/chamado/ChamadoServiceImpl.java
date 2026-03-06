@@ -40,6 +40,6 @@ public class ChamadoServiceImpl implements ChamadoService {
 
     @Override
     public List<GetChamadosRespDTO> buscarTodosPorUsuario(Long idUsuario) {
-        return this.chamadoDao.findAllByUsuario_Id(idUsuario).stream().map(this.chamadoMapper::toGetChamadosRespDTO).toList();
+        return this.chamadoDao.findAllByDono_Id(idUsuario).stream().map(this.chamadoMapper::toGetChamadosRespDTO).toList();
     }
 }

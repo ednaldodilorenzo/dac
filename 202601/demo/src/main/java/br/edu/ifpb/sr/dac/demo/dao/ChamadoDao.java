@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ChamadoDao extends JpaRepository<Chamado, Long> {
-    List<Chamado> findAllByUsuario_Id(Long id);
+    List<Chamado> findAllByDono_Id(Long id);
 }

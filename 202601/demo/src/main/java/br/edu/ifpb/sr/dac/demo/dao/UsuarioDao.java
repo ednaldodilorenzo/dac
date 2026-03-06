@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface UsuarioDao extends JpaRepository<Usuario, Long> {
-    List<Usuario> findAllByPapelUsuario(PapelUsuario papel);
+    List<Usuario> findAllByPapel(PapelUsuario papel);
 }

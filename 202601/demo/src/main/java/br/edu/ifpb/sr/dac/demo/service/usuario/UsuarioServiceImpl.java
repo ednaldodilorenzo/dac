@@ -36,6 +36,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<GetUsuariosRespDTO> listAllAdm() {
-        return this.usuarioDao.findAllByPapelUsuario(PapelUsuario.ADMIN).stream().map(usuario -> new GetUsuariosRespDTO(usuario.getId(), usuario.getNome(), usuario.getUsername())).toList();
+        return this.usuarioDao.findAllByPapel(PapelUsuario.ADMIN).stream().map(usuario -> new GetUsuariosRespDTO(usuario.getId(), usuario.getNome(), usuario.getUsername())).toList();
     }
 }
