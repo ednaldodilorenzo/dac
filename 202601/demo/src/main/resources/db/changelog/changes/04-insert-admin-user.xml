@@ -1,0 +1,15 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org">
+
+    <changeSet id="insert-admin-data" author="ednaldo">
+        <insert tableName="usuario">
+            <column name="nome" value="administrador"/>
+            <column name="username" value="admin"/>
+            <column name="papel" value="ADMIN"/>
+            <column name="email" value="john.doe@example.com"/>
+            <column name="cpf" value="99999999999"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
