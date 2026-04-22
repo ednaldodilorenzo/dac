@@ -21,4 +21,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PapelUsuario papel;
+    @Column(nullable = false, unique = true)
+    private String cpf;
 }
