@@ -6,7 +6,7 @@ import br.edu.ifpb.sr.dac.demo.dto.PostChamadoReqDTO;
 import java.util.List;
 
 public interface ChamadoService {
-    void salvar(PostChamadoReqDTO dto, Long idDono);
+    Long salvar(PostChamadoReqDTO dto, Long idDono);
 
     List<GetChamadosRespDTO> buscarTodosPorUsuario(Long idUsuario);
 }

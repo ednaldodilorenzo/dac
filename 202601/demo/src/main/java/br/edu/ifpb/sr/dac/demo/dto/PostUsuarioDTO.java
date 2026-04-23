@@ -17,8 +17,6 @@ public record PostUsuarioDTO(
         @NotBlank(message = "Email deve ser informado")
         @Email(message = "Formato de email inválido!")
         String email,
-        @NotNull(message = "Id do usuário deve ser informado")
-        Long idUsuario,
         @NotBlank(message = "Cpf deve ser informado")
         String cpf
 ) {}

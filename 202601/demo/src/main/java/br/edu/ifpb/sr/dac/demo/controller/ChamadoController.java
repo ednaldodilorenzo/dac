@@ -6,6 +6,8 @@ import br.edu.ifpb.sr.dac.demo.service.chamado.ChamadoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.List;
 
@@ -19,8 +21,9 @@ public class ChamadoController {
     }
 
     @PostMapping
-    public void postChamado(Principal principal, @RequestBody PostChamadoReqDTO dto) {
-        this.chamadoService.salvar(dto, Long.parseLong(principal.getName()));
+    public ResponseEntity<String> postChamado(Principal principal, @RequestBody PostChamadoReqDTO dto) throws URISyntaxException {
+        Long idNovoChamado = this.chamadoService.salvar(dto, Long.parseLong(principal.getName()));
+        return ResponseEntity.created(new URI("/v1/chamados/"+idNovoChamado)).build();
     }
 
     @GetMapping("/usuario")

@@ -29,15 +29,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void saveAdm(PostUsuarioDTO dto) {
-        Usuario autor = this.usuarioDao.findById(dto.idUsuario()).orElseThrow(() -> new RuntimeException("usuário não encontrado"));
+    public Long saveAdm(PostUsuarioDTO dto, Long idUsuario) {
+        Usuario autor = this.usuarioDao.findById(idUsuario).orElseThrow(() -> new RuntimeException("usuário não encontrado"));
         if (autor.getPapel() != PapelUsuario.ADMIN) {
             throw new RuntimeException("Apenas adminstradores podem inserir administradores");
         }
         Usuario usuario = this.usuarioMapper.toUsuarioEntity(dto);
         usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
         usuario.setPapel(PapelUsuario.ADMIN);
-        this.usuarioDao.save(usuario);
+        Usuario newUsuario = this.usuarioDao.save(usuario);
+
+        return newUsuario.getId();
     }
 
     @Override

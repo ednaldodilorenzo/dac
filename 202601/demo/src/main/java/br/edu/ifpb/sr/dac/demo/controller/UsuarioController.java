@@ -4,7 +4,6 @@ import br.edu.ifpb.sr.dac.demo.dto.GetUsuariosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostUsuarioDTO;
 import br.edu.ifpb.sr.dac.demo.service.usuario.UsuarioService;
 import jakarta.validation.Valid;
-import org.springframework.context.annotation.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -13,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/v1/usuarios")
@@ -26,15 +26,14 @@ public class UsuarioController {
 
     @PostMapping("/administrador")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Boolean> postUsuarioAdm(@RequestBody @Valid PostUsuarioDTO dto) {
-        this.usuarioService.saveAdm(dto);
-        return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
+    public ResponseEntity<Boolean> postUsuarioAdm(Principal principal, @RequestBody @Valid PostUsuarioDTO dto) {
+        Long idUsuarioNovo = this.usuarioService.saveAdm(dto, Long.parseLong(principal.getName()));
+        return ResponseEntity.created(URI.create("/usuario/" + idUsuarioNovo)).body(Boolean.TRUE);
     }
 
     @GetMapping("/administrador")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Page<GetUsuariosRespDTO>> getAllUsuariosAdm(
-            @PageableDefault(size = 10, sort = "nome") Pageable pageable) {
+    public ResponseEntity<Page<GetUsuariosRespDTO>> getAllUsuariosAdm(@PageableDefault(size = 10, sort = "nome") Pageable pageable) {
         return ResponseEntity.ok(this.usuarioService.listAllAdm(pageable));
     }
 }
