@@ -4,9 +4,9 @@ import br.edu.ifpb.sr.dac.demo.dto.GetChamadosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostChamadoReqDTO;
 import br.edu.ifpb.sr.dac.demo.service.chamado.ChamadoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -19,12 +19,12 @@ public class ChamadoController {
     }
 
     @PostMapping
-    public void postChamado(@RequestBody PostChamadoReqDTO dto) {
-        this.chamadoService.salvar(dto);
+    public void postChamado(Principal principal, @RequestBody PostChamadoReqDTO dto) {
+        this.chamadoService.salvar(dto, Long.parseLong(principal.getName()));
     }
 
-    @GetMapping("/usuario/:id")
-    public ResponseEntity<List<GetChamadosRespDTO>> getAllByUsuario(@PathVariable Long idUsuario) {
-        return ResponseEntity.ok(this.chamadoService.buscarTodosPorUsuario(idUsuario));
+    @GetMapping("/usuario")
+    public ResponseEntity<List<GetChamadosRespDTO>> getAllByUsuario(Principal principal) {
+        return ResponseEntity.ok(this.chamadoService.buscarTodosPorUsuario(Long.parseLong(principal.getName())));
     }
 }

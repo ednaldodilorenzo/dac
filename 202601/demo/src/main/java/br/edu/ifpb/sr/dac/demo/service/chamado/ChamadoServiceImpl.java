@@ -30,8 +30,8 @@ public class ChamadoServiceImpl implements ChamadoService {
 
     @Override
     @Transactional
-    public void salvar(PostChamadoReqDTO dto) {
-        Usuario dono = this.usuarioDao.findById(dto.idDono()).orElseThrow(() -> new RuntimeException("Dono do chamado não encontrado"));
+    public void salvar(PostChamadoReqDTO dto, Long idDono) {
+        Usuario dono = this.usuarioDao.findById(idDono).orElseThrow(() -> new RuntimeException("Dono do chamado não encontrado"));
         Chamado chamado = chamadoMapper.toEntity(dto);
         chamado.setDono(dono);
         chamado.setStatus(StatusChamado.ABERTO);

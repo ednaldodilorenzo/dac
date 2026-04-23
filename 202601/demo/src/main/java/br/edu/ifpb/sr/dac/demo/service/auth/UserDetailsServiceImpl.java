@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return User.
                 builder().
-                username(usuario.getUsername()).
+                username(usuario.getId().toString()).
                 password(usuario.getSenha()).
                 roles(String.valueOf(usuario.getPapel())).
                 build();
