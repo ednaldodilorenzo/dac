@@ -3,6 +3,7 @@ package br.edu.ifpb.sr.dac.demo.controller;
 import br.edu.ifpb.sr.dac.demo.dto.GetChamadosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostChamadoReqDTO;
 import br.edu.ifpb.sr.dac.demo.service.chamado.ChamadoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class ChamadoController {
     }
 
     @PostMapping
-    public ResponseEntity<String> postChamado(Principal principal, @RequestBody PostChamadoReqDTO dto) throws URISyntaxException {
+    public ResponseEntity<String> postChamado(Principal principal, @RequestBody @Valid PostChamadoReqDTO dto) throws URISyntaxException {
         Long idNovoChamado = this.chamadoService.salvar(dto, Long.parseLong(principal.getName()));
         return ResponseEntity.created(new URI("/v1/chamados/"+idNovoChamado)).build();
     }
