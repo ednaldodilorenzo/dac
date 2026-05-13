@@ -1,15 +1,14 @@
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org">
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet id="insert-admin-data" author="ednaldo">
-        <insert tableName="usuario">
-            <column name="nome" value="administrador"/>
-            <column name="username" value="admin"/>
-            <column name="papel" value="ADMIN"/>
-            <column name="email" value="john.doe@example.com"/>
-            <column name="cpf" value="99999999999"/>
-        </insert>
+        <sql>
+            INSERT INTO usuario (nome, username, senha, papel, email, cpf)
+            VALUES ('Admin', 'admin', '$2a$10$3fbNeI21Rz94XoiHJsIhNeNbQoNCiMO8P0O4efQ05Phh3Z5B.Begu', 'ADMIN', 'admin@teste.com', '12345678909');
+        </sql>
     </changeSet>
 
 </databaseChangeLog>

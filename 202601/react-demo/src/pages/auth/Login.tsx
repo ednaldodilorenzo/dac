@@ -1,10 +1,16 @@
 import { Link, useNavigate } from "react-router";
+import { executeLogin } from "./auth.service";
 
 export default function Login() {
     const navigate = useNavigate();
 
     function handleButtonClick() {
-        navigate("/main");
+        executeLogin("admin", "123456").then(() => {
+            navigate("/main/alunos");
+        }).catch(err => {
+            console.error(err);
+        });
+        
     }
 
     return (
