@@ -1,6 +1,6 @@
 import { create } from 'axios'
 
-export const requester = create({
+const requester = create({
     baseURL: "/api",
 });
 
@@ -11,3 +11,5 @@ requester.interceptors.request.use((config) => {
     }
     return config;
 });
+
+export { requester };
