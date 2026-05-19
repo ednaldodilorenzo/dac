@@ -1,9 +1,10 @@
 import { Navigate, Outlet, useNavigate } from "react-router";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Main() {
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
-    return token ? (
+    const { isAuthenticated } = useAuthContext();
+    return isAuthenticated ? (
         <>
             <div>
                 <h1>Main</h1>
